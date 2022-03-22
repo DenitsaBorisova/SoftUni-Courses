@@ -1,0 +1,47 @@
+package List;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class P03HouseParty {
+    public static void main(String[] args) {
+
+        List<String> guestsList = new ArrayList<>();
+
+
+        Scanner scanner = new Scanner(System.in);
+
+        int numOfCommands=Integer.parseInt(scanner.nextLine());
+
+        for (int i = 0; i < numOfCommands; i++) {
+
+            String lineOfCommmand=scanner.nextLine();
+            String[] commandsArray=lineOfCommmand.split("\\s+");
+
+            String name = commandsArray[0];
+
+            if (!lineOfCommmand.contains("is not going!")){
+
+                if (guestsList.contains(name)) {
+
+                    System.out.printf("%s is already in the list!%n", name);
+
+              } else {
+                    guestsList.add(name);
+                }
+        } else {
+                if (guestsList.contains(name)) {
+                    guestsList.remove(name);
+                } else {
+                    System.out.printf("%s is not in the list!%n", name);
+                }
+            }
+        }
+     
+        guestsList.forEach(System.out::println);
+    }
+}
+
