@@ -1,0 +1,41 @@
+package List;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class P02ChangeList {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        List<Integer> listOfNumbers = Arrays
+                .stream(scanner.nextLine().split("\\s+"))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        String command = scanner.nextLine();
+
+        while (!command.equals("end")) {
+
+            String[] data = command.split("\\s+");
+
+            if (data[0].equals("Delete")) {
+
+                for (int i = 0; i < listOfNumbers.size() ; i++) {
+
+                    Integer delete = Integer.valueOf(data[1]);
+
+                    listOfNumbers.remove(delete);
+                }
+
+            }else if (data[0].equals("Insert")  ){
+
+                listOfNumbers.add(Integer.valueOf(data[2]),Integer.valueOf(data[1]));
+
+            }
+            command = scanner.nextLine();
+        }
+        listOfNumbers.forEach(el -> System.out.print(el + " "));
+    }
+}
